@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>博客-清风自来</title>
+	<meta name="author" content="jmlin">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/semantic.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/semantic.min.js"></script>
+	<style>
+		/*footer - 捐助、微信公众号*/
+		#allShow{ 
+			display:block;
+			position:relative;
+		}
+		#allShow span#show img{ display:none;}
+		#allShow:hover span#show img{ 
+			position:absolute; 
+			left:-20%; 
+			bottom:108px; 
+			margin-left:-85px; 
+			padding-top:3px; 
+			display:block;
+		}
+		/*返回顶部*/
+		#gotop{
+			position: fixed;
+			bottom: 202px;
+			right: 20px;
+			display: none;
+		}
+	</style>
+	<script>
+		if (top.location != self.location)top.location=self.location; 
+	</script>
+</head>
+<body>
+	<span name="gotop"></span>
+	<!-- nav -->
+	<div class="ui fixed inverted menu">
+		<a class="ui inverted header item">清风自来</a>
+		<a href="index.html" class="item">首页</a>
+		<a href="blog.html" class="item">博客</a>
+		<a href="pics.html" class="item">图片</a>
+		<a href="videos.html" class="item">视频</a>
+		<div class="item right">
+			<a href="" class="item">注册</a>
+			<a href="" class="item">登录</a>
+		</div>
+	</div>
+	<!-- banner -->
+	<div class="ui vertical basic segment">
+		<img class="ui image" src="images/blog.png" alt="">
+	</div>
+	<!-- main -->
+	<div class="ui very padded grid">
+		<!-- left -->
+		<div class="ten wide column">
+			<div class="ui container segment">
+				<div class="ui items">
+					<!-- cycle begin -->
+				    <div class="item">
+				        <div class="ui small image">
+				            <img src="images/image.png">
+				        </div>
+				        <div class="content">
+				            <a href="#" class="header">箭头谷露营</a>
+				            <div class="meta">
+				                <span class="price">2018-3-1</span>
+				                <span class="stay">实践</span>
+				            </div>
+				            <div class="description">
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla repellat earum, vel vero beatae quo neque illo voluptates in modi tenetur architecto, suscipit ad ducimus assumenda explicabo deserunt nisi magnam!</p>
+				            </div>
+				        </div>
+				    </div>
+			    	<!-- cycle end -->
+				</div>
+			</div>
+		</div>
+		<!-- right -->
+		<div class="six wide column">
+			<div class="ui container segment">
+				<div class="ui relaxed divided list">
+					<h3 class="ui header">所有文章</h3>
+				    <div class="item">
+				        <i class="large github middle aligned icon"></i>
+				        <div class="content">
+				            <a class="header">Semantic-Org/Semantic-UI</a>
+				            <div class="description">Updated 10 mins ago</div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="ui basic segment"></div>
+	<!-- footer -->
+	<div class="ui vertical inverted segment">
+		<div class="ui very padded grid">
+			<div class="four wide column">
+				<p>&copy; 2018 <a href="">清风自来</a> all rights reserved</p>
+				<p><a href="http://www.miitbeian.gov.cn" target="_blank">苏ICP备17021155号-2</a></p>
+				<a href="javascript:;" class="ui teal" data-title="联系我" data-content="QQ：1461025291；（添加好友请备注“清风自来”）        
+				邮箱：contact@silent-tech.cn"><i class="icon mail"></i>联系我</a>
+			</div>
+			<div class="four wide column"></div>
+			<div id="allShow" class="four wide column">
+				<span id="show"><img src="images/show.jpg" alt="扫一扫微信支付"></span>
+                <img id="hide" class="ui image" src="images/wechat.png" alt="捐助 - 清风自来">
+            </div>
+			<div id="allShow" class="four wide column">
+				<span id="show"><img src="images/showwe.jpg" alt="扫一扫微信支付"></span>
+                <img id="hide" class="ui image" src="images/wechat_app.jpg" alt="微信扫码 - 清风自来">
+			</div>
+		</div>
+	</div>
+
+	<!-- gotoTop -->
+    <a href="#gotop">
+       <img src="images/go-to-top.png" id="gotop" alt="Top">
+    </a>
+    <!-- gotoTop-js -->
+    <script>
+	    $(function() {
+	        $(function() {
+	            $(window).scroll(function() {
+	                if ($(window).scrollTop() > 100) {
+	                    $("#gotop").fadeIn(300); //300ms渐入动画
+	                } else {
+	                    $("#gotop").fadeOut(300); //300ms渐隐动画
+	                }
+	            });
+
+	            $("#gotop").click(function() {
+	                $('body,html').animate({ scrollTop: 0 }, 300);
+	            });
+	        });
+	    });
+    </script>
+
+	<!-- contactMe -->
+	<script>
+		$('.ui.teal')
+		  	.popup({
+		    	on: 'click'
+		  	});
+	</script>
+
+	<!-- Prohibit viewing -->
+	<script type="text/javascript">
+ 		window.onload = function() {
+            document.onkeydown = function() {
+                var e = window.event || arguments[0];
+                //屏蔽F12
+                if(e.keyCode == 123) {
+                    return false;
+                //屏蔽Ctrl+Shift+I
+                } else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                     return false;
+                //屏蔽Shift+F10
+                } else if((e.shiftKey) && (e.keyCode == 121)){
+                    return false;
+                //屏蔽Ctrl+S
+                } else if((e.ctrlKey) && (e.keyCode == 83)){
+                    return false;
+                }
+            }
+             //屏蔽右键单击
+            document.oncontextmenu = function() {
+                 return false;
+            }
+        }
+    </script>
+</body>
+</html>

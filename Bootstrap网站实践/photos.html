@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>图片欣赏--清风自来</title>
+	<meta name="author" content="jmlin">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>	
+	<script src="js/base64.min.js"></script>
+	<style>
+		/* Move down content because we have a fixed navbar that is 50px tall */
+		body {
+		  padding-top: 50px;
+		  padding-bottom: 20px;
+		}
+		#marg {
+			margin: 59px 0 0 0;
+		}
+		/*返回顶部*/
+		#gotop{
+			position: fixed;
+			bottom: 60px;
+			right: 12px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<span name="gotop"></span>
+	<!-- 导航 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="container-fluid">
+	        <!-- Brand and toggle get grouped for better mobile display -->
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <a class="navbar-brand" href="#">清风自来</a>
+	        </div>
+	        <!-- Collect the nav links, forms, and other content for toggling -->
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            <ul class="nav navbar-nav">
+	                <li><a href="index.html">首页 <span class="sr-only">(current)</span></a></li>
+	                <li><a href="blog.html">博客</a></li>
+	                <li class="active"><a href="photos.html">图片</a></li>
+	                <li><a href="videos.html">视频</a></li>
+	                <li><a href="life.html">生活</a></li>
+	            </ul>
+	            <!-- <form class="navbar-form navbar-left">
+	                <div class="form-group">
+	                    <input type="text" class="form-control" placeholder="Search">
+	                </div>
+	                <button type="submit" class="btn btn-default">提交</button>
+	            </form> -->
+	        </div>
+	    </div>
+	</nav><!-- 导航结束 -->
+
+	<!-- 主体 -->
+	<div class="container">
+		<h3><span class="glyphicon glyphicon-picture"></span> 图片欣赏 ---- <span id="addText"></span></h3>
+	    <div class="row" id="addImg">
+	    	
+	    </div>
+	    <div class="btn btn-info pull-right">
+			<a href="#gotop" id="addMore">刷新</a>
+		</div>
+	    <hr>
+	    <!-- 底部 -->
+	    <footer>
+	        <p>&copy; 2018 清风自来 | <a href="http://www.miitbeian.gov.cn">苏ICP备17021155号-2</a></p>
+	    </footer><!-- 底部结束 -->
+	</div><!-- 主体结束 -->
+	<!-- gotoTop -->
+    <a href="#gotop">
+       <img src="images/go-to-top.png" id="gotop" alt="Top">
+    </a>
+    <!-- gotoTop-js -->
+    <script>
+	    $(function() {
+	        $(function() {
+	            $(window).scroll(function() {
+	                if ($(window).scrollTop() > 100) {
+	                    $("#gotop").fadeIn(300); //300ms渐入动画
+	                } else {
+	                    $("#gotop").fadeOut(300); //300ms渐隐动画
+	                }
+	            });
+
+	            $("#gotop").click(function() {
+	                $('body,html').animate({ scrollTop: 0 }, 300);
+	            });
+	        });
+	    });
+    </script>
+
+    <!-- get img resource -->
+	<script>
+		function createXMLHTTPObject()
+		{
+		    var XMLHttpFactories = [
+				function () {return new XMLHttpRequest()},
+				function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+				function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+				function () {return new ActiveXObject("Microsoft.XMLHTTP")},
+			];
+		    var xmlhttp = false;
+		    for (var i = 0; i < XMLHttpFactories.length; i ++ )
+		    {
+		        try
+		        {
+		            xmlhttp = XMLHttpFactories[i]();
+		        }
+		        catch (e)
+		        {
+		            continue;
+		        }
+		        break;
+		    }
+		    return xmlhttp;
+		}
+
+		var x = createXMLHTTPObject();
+		var categorys = ["fashion", "nature", "backgrounds", "science", "education","people", "feelings", "religion", "health", "places", "animals", "industry", "food", "computer", "sports", "transportation", "travel", "buildings", "business", "music"];
+		var num = parseInt(Math.random() * 19);
+		var category = categorys[num];
+		var page = parseInt(Math.random() * 5 + 1);
+		$("#addText").append(category);
+		var dekey = Base64.decode("MzEwMTg1Ni1jODFkZGQyN2U2ZWZlYjBhYWFmNjUwYmE5");
+		var url = "https://pixabay.com/api/?key="+dekey+"&category="+category+"&safesearch=true&page="+page+"&per_page=100";
+		x.open("GET", url, true);
+		x.onreadystatechange = function ()
+		{
+		    if ( x.readyState == 4 && x.status == 200 )
+		    {
+		        var info = x.responseText;
+		        var  o = eval("(" + info + ")");
+		        var items = o.hits;
+		        console.log(items);
+		        for (var i = 0; i <= items.length - 1; i++) {
+		        	var item = items[i].previewURL;
+		        	var bigimg =items[i].webformatURL;
+		        	$("#addImg").append('<div class="col-md-3" style="padding-bottom:5px;"><a target="_blank" href="'+bigimg+'"><img class="img-responsive center-block" src="'+item +'" alt="img"></a></div>');
+		        }
+		    }
+		}
+		x.send(null);
+	</script>
+	<!-- 刷新 -->
+	<script>
+		$(function () {
+			$("#addMore").click(function () {
+				window.location.reload();
+			});
+		});
+	</script>
+</body>
+</html>
+
+
