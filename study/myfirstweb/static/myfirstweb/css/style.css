@@ -1,0 +1,37 @@
+@charset "utf-8"
+
+/*footer - 捐助、微信公众号*/
+#allShow{
+	display:block;
+	position:relative;
+}
+#allShow span#show img{ display:none;}
+#allShow:hover span#show img{
+	position:absolute;
+	left:50%;
+	bottom:78px;
+	margin-left:-115px;
+	padding-top:3px;
+	display:block;
+}
+/*返回顶部*/
+#gotop{
+	position: fixed;
+	bottom: 60px;
+	right: 20px;
+	display: none;
+}
+
+/*menu*/
+#shadow div:hover{
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* p */
+.content .description p{
+	width: 100%;
+	height: auto;
+	word-wrap:break-word;
+    word-break:break-all;
+    overflow: hidden;
+}

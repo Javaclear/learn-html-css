@@ -74,7 +74,7 @@
 	    <hr>
 	    <!-- 底部 -->
 	    <footer>
-	        <p>&copy; 2018 清风自来 | <a href="http://www.miitbeian.gov.cn">苏ICP备17021155号-2</a></p>
+	        <p>&copy; 2018 清风自来 | <a href="http://www.miitbeian.gov.cn">苏ICP备17012455号-2</a></p>
 	    </footer><!-- 底部结束 -->
 	</div><!-- 主体结束 -->
 	<!-- gotoTop -->
@@ -100,7 +100,7 @@
 	    });
     </script>
 
-    <!-- get img resource -->
+    <!-- get video resource -->
 	<script>
 		function createXMLHTTPObject()
 		{
@@ -132,7 +132,7 @@
 		var category = categorys[num];
 		var page = parseInt(Math.random() * 5 + 1);
 		$("#addText").append(category);
-		var dekey = Base64.decode("MzEwMTg1Ni1jODFkZGQyN2U2ZWZlYjBhYWFmNjUwYmE5");
+		var dekey = Base64.decode(""); //pixabay api key 加密码
 		var url = "https://pixabay.com/api/videos/?key="+dekey+"&category="+category+"&safesearch=true&page="+page+"&per_page=52";
 		x.open("GET", url, true);
 		x.onreadystatechange = function ()
