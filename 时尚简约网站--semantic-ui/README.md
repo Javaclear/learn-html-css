@@ -1,5 +1,7 @@
 这套模板增加了禁止查看源代码功能，为了练习。实际生产中，建议移除这部分代码。
 
+```
+
 <script type="text/javascript">
  		window.onload = function() {
             document.onkeydown = function() {
@@ -23,4 +25,6 @@
                  return false;
             }
         }
-    </script>
+    </script>
+    
+```
